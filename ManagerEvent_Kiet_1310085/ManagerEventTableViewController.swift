@@ -25,6 +25,11 @@ class ManagerEventTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        animateTable()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,13 +92,13 @@ class ManagerEventTableViewController: UITableViewController {
     //Sort And Move Data From Section to Section
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         //get data in sourceIndexPath
-        let eventInDay = eventLines[sourceIndexPath.section];
-        let event = eventInDay.events[sourceIndexPath.row];
+        let evenLine = eventLines[sourceIndexPath.section];
+        let event = evenLine.events[sourceIndexPath.row];
         
-        eventInDay.events.remove(at: sourceIndexPath.row)
+        evenLine.events.remove(at: sourceIndexPath.row)
         
-        let eventInDayDes = eventLines[destinationIndexPath.section];
-        eventInDayDes.events.insert(event, at: destinationIndexPath.row);
+        let evenLineDes = eventLines[destinationIndexPath.section];
+        evenLineDes.events.insert(event, at: destinationIndexPath.row);
         
     }
     
@@ -111,15 +116,59 @@ class ManagerEventTableViewController: UITableViewController {
      }*/
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "Event Detail") {
+            // initialize new view controller and cast it as your view controller
+            let eventDetailVC = segue.destination as! EventDetailTableViewController
+            if let indexPath = self.tableView.indexPathForSelectedRow{
+                eventDetailVC.event = eventAtIndexPath(indexPath: indexPath as NSIndexPath)
+                //eventDetailVC.dateImageView.image = imgAtIndexPath(indexPath: indexPath as NSIndexPath)
+                eventDetailVC.dateEvent = dateAtIndexPath(indexPath: indexPath as NSIndexPath)
+            }
+            
+        }
+
+        
      }
-     */
     
+    // Get event by indexPath
+    func eventAtIndexPath(indexPath: NSIndexPath) -> Event{
+        let eventLine = eventLines[indexPath.section];
+        return eventLine.events[indexPath.row];
+        
+    }
+    
+    func dateAtIndexPath(indexPath: NSIndexPath) -> String{
+        let eventLine = eventLines[indexPath.section];
+        return eventLine.date;
+    }
+    
+    //Animation for TableView
+    func animateTable() {
+        tableView.reloadData()
+        let cells = tableView.visibleCells
+        
+        let tableViewHeight = tableView.bounds.size.height
+        
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
+        }
+        
+        var delayCounter = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.0, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform = CGAffineTransform.identity
+            }, completion: nil)
+            delayCounter += 1
+        }
+        
+    }
 }
 

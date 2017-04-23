@@ -7,16 +7,23 @@
 //
 
 import Foundation
+import UIKit
 class EventLine
 {
     // Variables
     var date: String            // date of the event section
     var events: [Event]     // all event in the section
+    //var dateImage: UIImage
     
     init(dated: String, includeEvents: [Event])
     {
         date = dated
         events = includeEvents
+        /*if let img = UIImage(named: imageName) {
+            dateImage = img
+        } else {
+            dateImage = UIImage(named: "default")!
+        }*/
     }
     
     class func eventLines() -> [EventLine]
