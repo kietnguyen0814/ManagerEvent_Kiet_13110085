@@ -27,8 +27,8 @@ class ManagerEventTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        animateTable()
         tableView.reloadData()
+        animateTable()
     }
     
     override func didReceiveMemoryWarning() {
@@ -153,7 +153,7 @@ class ManagerEventTableViewController: UITableViewController {
     
     //Animation for TableView
     func animateTable() {
-        tableView.reloadData()
+        
         let cells = tableView.visibleCells
         
         let tableViewHeight = tableView.bounds.size.height
@@ -164,12 +164,11 @@ class ManagerEventTableViewController: UITableViewController {
         
         var delayCounter = 0
         for cell in cells {
-            UIView.animate(withDuration: 1.0, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.85, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 cell.transform = CGAffineTransform.identity
             }, completion: nil)
             delayCounter += 1
         }
-        
     }
 }
 
