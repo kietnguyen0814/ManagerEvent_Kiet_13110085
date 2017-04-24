@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventDetailTableViewController: UITableViewController{
+class EventDetailTableViewController: UITableViewController, UITextViewDelegate, UITextFieldDelegate{
 
     //Model
     var event: Event?
@@ -26,7 +26,22 @@ class EventDetailTableViewController: UITableViewController{
         dateLable.text = dateEvent
     }
     
+    
+    // This will call when user go back ( this view will disappear )
+    override func viewWillDisappear(_ animated: Bool) {
+        event?.title = eventTitle.text!
+        event?.description = eventDescriptionTextView.text!
+    }
+    
+    // UITextFieldDelegate ( Keyboard will  disable when press return )
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
-
-
+    // UIScrollViewDelegate ( Keyboard will disable when scroll the UIView )
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        eventDescriptionTextView.resignFirstResponder()
+        eventTitle.resignFirstResponder()
+    }
 }

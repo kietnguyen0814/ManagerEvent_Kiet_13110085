@@ -28,6 +28,7 @@ class ManagerEventTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         animateTable()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
