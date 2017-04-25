@@ -18,6 +18,8 @@
 		2E6156391EACFD42006D8BB9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6156381EACFD42006D8BB9 /* Event.swift */; };
 		2E61563B1EACFD4F006D8BB9 /* EventLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E61563A1EACFD4F006D8BB9 /* EventLine.swift */; };
 		2E61564C1EAD05FF006D8BB9 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E61564B1EAD05FF006D8BB9 /* EventDetailTableViewController.swift */; };
+		2EAFAD9C1EAF6DB8003CDBAF /* HeaderViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAFAD9A1EAF6DB8003CDBAF /* HeaderViewSection.swift */; };
+		2EAFAD9D1EAF6DB8003CDBAF /* HeaderViewSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAFAD9B1EAF6DB8003CDBAF /* HeaderViewSection.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		2E6156381EACFD42006D8BB9 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2E61563A1EACFD4F006D8BB9 /* EventLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventLine.swift; sourceTree = "<group>"; };
 		2E61564B1EAD05FF006D8BB9 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
+		2EAFAD9A1EAF6DB8003CDBAF /* HeaderViewSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewSection.swift; sourceTree = "<group>"; };
+		2EAFAD9B1EAF6DB8003CDBAF /* HeaderViewSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderViewSection.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				2E6155B91EACFB7F006D8BB9 /* Assets.xcassets */,
 				2E6155BB1EACFB7F006D8BB9 /* LaunchScreen.storyboard */,
 				2E6155BE1EACFB7F006D8BB9 /* Info.plist */,
+				2EAFAD9A1EAF6DB8003CDBAF /* HeaderViewSection.swift */,
+				2EAFAD9B1EAF6DB8003CDBAF /* HeaderViewSection.xib */,
 			);
 			path = ManagerEvent_Kiet_1310085;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 				2E6155BD1EACFB7F006D8BB9 /* LaunchScreen.storyboard in Resources */,
 				2E6155BA1EACFB7F006D8BB9 /* Assets.xcassets in Resources */,
 				2E6155B81EACFB7F006D8BB9 /* Main.storyboard in Resources */,
+				2EAFAD9D1EAF6DB8003CDBAF /* HeaderViewSection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +302,7 @@
 				2E6155B51EACFB7F006D8BB9 /* ViewController.swift in Sources */,
 				2E61564C1EAD05FF006D8BB9 /* EventDetailTableViewController.swift in Sources */,
 				2E6156311EACFC14006D8BB9 /* ManagerEventTableViewController.swift in Sources */,
+				2EAFAD9C1EAF6DB8003CDBAF /* HeaderViewSection.swift in Sources */,
 				2E6155B31EACFB7F006D8BB9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,13 +8,13 @@
 
 import UIKit
 
+var heightofHeader : CGFloat = 44
+
 class ManagerEventTableViewController: UITableViewController {
     
     lazy var eventLines: [EventLine] = {
         return EventLine.eventLines()
     }()
-    
-    var sectionData: [Int: [String]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,7 @@ class ManagerEventTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        //Show Edit Button
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
@@ -50,13 +51,30 @@ class ManagerEventTableViewController: UITableViewController {
         return eventLine.events.count // the number of event in the section
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //Mark Default Header Section
+    /*override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let eventLine = eventLines[section]
-        return eventLine.date // the number of each day
+        return eventLine.dates // the number of each day
+    }*/
+    
+    //Mark Edit Header Section
+    // User must set height to show the section
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return heightofHeader
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerViewSection = Bundle.main.loadNibNamed("HeaderViewSection", owner: self, options: nil)?.first as! HeaderViewSection
+        
+        headerViewSection.headerSectionImage.image = eventLines[section].dateImages
+        headerViewSection.headerSectionLabel.text = eventLines[section].dates
+        
+        return headerViewSection
+    }
+    
+    // Set data for tableView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Date Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Event Cell", for: indexPath)
         
         let eventLine = eventLines[indexPath.section]
         let event = eventLine.events[indexPath.row]
@@ -130,8 +148,8 @@ class ManagerEventTableViewController: UITableViewController {
             let eventDetailVC = segue.destination as! EventDetailTableViewController
             if let indexPath = self.tableView.indexPathForSelectedRow{
                 eventDetailVC.event = eventAtIndexPath(indexPath: indexPath as NSIndexPath)
-                //eventDetailVC.dateImageView.image = imgAtIndexPath(indexPath: indexPath as NSIndexPath)
                 eventDetailVC.dateEvent = dateAtIndexPath(indexPath: indexPath as NSIndexPath)
+                eventDetailVC.dateImages = imageAtIndexPath(indexPath: indexPath as NSIndexPath)
             }
             
         }
@@ -139,16 +157,22 @@ class ManagerEventTableViewController: UITableViewController {
         
      }
     
-    // Get event by indexPath
+    //Get event by indexPath
     func eventAtIndexPath(indexPath: NSIndexPath) -> Event{
-        let eventLine = eventLines[indexPath.section];
-        return eventLine.events[indexPath.row];
-        
+        let eventLine = eventLines[indexPath.section]
+        return eventLine.events[indexPath.row]
     }
     
+    //Get date by indexPath
     func dateAtIndexPath(indexPath: NSIndexPath) -> String{
-        let eventLine = eventLines[indexPath.section];
-        return eventLine.date;
+        let eventLine = eventLines[indexPath.section]
+        return eventLine.dates
+    }
+    
+    //Get image by indexPath
+    func imageAtIndexPath(indexPath: NSIndexPath) -> UIImage{
+        let eventLine = eventLines[indexPath.section]
+        return eventLine.dateImages
     }
     
     //Animation for TableView

@@ -13,27 +13,36 @@ class EventDetailTableViewController: UITableViewController, UITextViewDelegate,
     //Model
     var event: Event?
     var dateEvent: String?
+    var dateImages: UIImage?
     
+    @IBOutlet weak var dateImageView: UIImageView!
     @IBOutlet weak var dateLable: UILabel!
     @IBOutlet weak var eventTitle: UITextField!
-    @IBOutlet weak var eventDescriptionTextView: UITextView!
+    @IBOutlet weak var eventDesciptionTextView: UITextView!
+    
+    /*@IBOutlet weak var dateLable: UILabel!
+    @IBOutlet weak var eventTitle: UITextField!
+    @IBOutlet weak var eventDescriptionTextView: UITextView!*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dateImageView.image = dateImages
         eventTitle.text = event?.title
-        eventDescriptionTextView.text = event?.description
+        eventDesciptionTextView.text = event?.description
         dateLable.text = dateEvent
+        
     }
     
     
     // This will call when user go back ( this view will disappear )
+    
     override func viewWillDisappear(_ animated: Bool) {
         event?.title = eventTitle.text!
-        event?.description = eventDescriptionTextView.text!
+        event?.description = eventDesciptionTextView.text!
     }
     
     // UITextFieldDelegate ( Keyboard will  disable when press return )
+    // User must set delegate from this textfield to this view
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -41,7 +50,7 @@ class EventDetailTableViewController: UITableViewController, UITextViewDelegate,
 
     // UIScrollViewDelegate ( Keyboard will disable when scroll the UIView )
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        eventDescriptionTextView.resignFirstResponder()
+        eventDesciptionTextView.resignFirstResponder()
         eventTitle.resignFirstResponder()
     }
 }

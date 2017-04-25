@@ -11,19 +11,15 @@ import UIKit
 class EventLine
 {
     // Variables
-    var date: String            // date of the event section
+    var dates: String            // date of the event section
     var events: [Event]     // all event in the section
-    //var dateImage: UIImage
+    var dateImages: UIImage
     
-    init(dated: String, includeEvents: [Event])
+    init(dateOfWeek: String, includeEvents: [Event], dateImage: UIImage)
     {
-        date = dated
+        dates = dateOfWeek
         events = includeEvents
-        /*if let img = UIImage(named: imageName) {
-            dateImage = img
-        } else {
-            dateImage = UIImage(named: "default")!
-        }*/
+        dateImages = dateImage
     }
     
     class func eventLines() -> [EventLine]
@@ -48,7 +44,7 @@ class EventLine
         events.append(Event(titled: "Ăn Tối", description: "Đang ăn tối."))
         events.append(Event(titled: "Đồ Án", description: "Làm đồ án."))
         
-        return EventLine(dated: "Chủ Nhật", includeEvents: events)
+        return EventLine(dateOfWeek: "Chủ Nhật", includeEvents: events, dateImage: #imageLiteral(resourceName: "sunday"))
     }
     
     private class func t2() -> EventLine {
@@ -66,7 +62,7 @@ class EventLine
         events.append(Event(titled: "Ăn Tối", description: "Đang ăn tối."))
         events.append(Event(titled: "Đồ Án", description: "Làm đồ án."))
         
-        return EventLine(dated: "Thứ 2", includeEvents: events)
+        return EventLine(dateOfWeek: "Thứ 2", includeEvents: events, dateImage: #imageLiteral(resourceName: "monday"))
     }
     
     private class func t3() -> EventLine {
@@ -84,7 +80,7 @@ class EventLine
         events.append(Event(titled: "Ăn Tối", description: "Đang ăn tối."))
         events.append(Event(titled: "Đồ Án", description: "Làm đồ án."))
         
-        return EventLine(dated: "Thứ 3", includeEvents: events)
+        return EventLine(dateOfWeek: "Thứ 3", includeEvents: events, dateImage: #imageLiteral(resourceName: "tuesday"))
     }
     
     private class func t4() -> EventLine {
@@ -102,7 +98,7 @@ class EventLine
         events.append(Event(titled: "Ăn Tối", description: "Đang ăn tối."))
         events.append(Event(titled: "Đồ Án", description: "Làm đồ án."))
         
-        return EventLine(dated: "Thứ 4", includeEvents: events)
+        return EventLine(dateOfWeek: "Thứ 4", includeEvents: events, dateImage: #imageLiteral(resourceName: "wednesday"))
     }
     
     private class func t5() -> EventLine {
@@ -120,7 +116,7 @@ class EventLine
         events.append(Event(titled: "Ăn Tối", description: "Đang ăn tối."))
         events.append(Event(titled: "Đồ Án", description: "Làm đồ án."))
         
-        return EventLine(dated: "Thứ 5", includeEvents: events)
+        return EventLine(dateOfWeek: "Thứ 5", includeEvents: events, dateImage: #imageLiteral(resourceName: "thursday"))
     }
     
     private class func t6() -> EventLine {
@@ -138,7 +134,7 @@ class EventLine
         events.append(Event(titled: "Ăn Tối", description: "Đang ăn tối."))
         events.append(Event(titled: "Đồ Án", description: "Làm đồ án."))
         
-        return EventLine(dated: "Thứ 6", includeEvents: events)
+        return EventLine(dateOfWeek: "Thứ 6", includeEvents: events, dateImage: #imageLiteral(resourceName: "friday"))
     }
     
     private class func t7() -> EventLine {
@@ -156,6 +152,6 @@ class EventLine
         events.append(Event(titled: "Ăn Tối", description: "Đang ăn tối."))
         events.append(Event(titled: "Đồ Án", description: "Làm đồ án."))
         
-        return EventLine(dated: "Thứ 7", includeEvents: events)
+        return EventLine(dateOfWeek: "Thứ 7", includeEvents: events, dateImage: #imageLiteral(resourceName: "saturday"))
     }
 }
